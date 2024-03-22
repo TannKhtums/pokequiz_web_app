@@ -1,0 +1,14 @@
+[
+  {
+    "name": "001",
+    "path": "../images/Pokemon/001.png"
+  },
+  {
+    "name": "002",
+    "path": "./Pokemon/002.png"
+  },
+  {
+    "name": "003",
+    "path": "./Pokemon/003.png"
+  }
+]
