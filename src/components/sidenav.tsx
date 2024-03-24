@@ -33,7 +33,7 @@ function SideNavLink({ href, children }: SideNaveLinkProps) {
   return (
     <Link
       href={href}
-      className={`flex h-[48px] w-[248px] items-center justify-center gap-2 rounded-lg bg-gray-50 p-3 ml-2 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 ${
+      className={`flex h-[48px] w-[248px] items-center justify-center gap-2 rounded-lg bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 ${
         pathname === href ? "bg-sky-100 text-blue-600" : ""
       } `}
     >
