@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 import PokemonCardImage from "../../components/PokemonCardImage";
 import Button from "../../components/Button";
-import { Input, Space, Select, Divider } from 'antd'
+import { Input, Space, Select, Divider } from "antd";
 
 function ComparePokemon() {
   const [pokemonA, setPokemonA] = useState({
@@ -60,7 +60,6 @@ function ComparePokemon() {
     speed: "",
     num: "92",
   });
-  
 
   const [pokemon1, setPokemon1] = useState("1");
   const [pokemon2, setPokemon2] = useState("4");
@@ -72,7 +71,6 @@ function ComparePokemon() {
   function handleSelectChange(value) {
     setNumToCompare(value);
   }
-
 
   const handleInputChange1 = (event) => {
     setPokemon1(event.target.value);
@@ -135,49 +133,87 @@ function ComparePokemon() {
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {searchPokemon();}, []);
+  useEffect(() => {
+    searchPokemon();
+  }, []);
 
   return (
     <div className="flex flex-col m-3">
       <div>
         <h1 className="text-xl text-left font-bold my-2">Compare Pokemon</h1>
         <h3 className="my-2">
-          Search for different Pokemon using either their name or number and compare their stats below.
+          Search for different Pokemon using either their name or number and
+          compare their stats below.
         </h3>
         <div className="my-2">
           <span className="pr-2">Number of Pokemon to compare:</span>
-          <SelectNumberToCompare onSelectChange={handleSelectChange}/>
+          <SelectNumberToCompare onSelectChange={handleSelectChange} />
         </div>
         <Space direction="vertical" size="middle">
-          <Space.Compact style={{width: '100%'}}>
-            <Input placeholder="Pokemon 1" value={pokemon1} onChange={handleInputChange1}/>
-            <Input placeholder="Pokemon 2" value={pokemon2} onChange={handleInputChange2}/>
-            {Number(numToCompare) >= 3  &&
-            <Input placeholder="Pokemon 3" value={pokemon3} onChange={handleInputChange3}/>
-            }
-            {Number(numToCompare) >= 4  &&
-            <Input placeholder="Pokemon 4" value={pokemon4} onChange={handleInputChange4}/>
-            }
-            {Number(numToCompare) === 5  &&
-            <Input placeholder="Pokemon 5" value={pokemon5} onChange={handleInputChange5}/>
-            }
-            <Button type="default" onClick={() => searchPokemon()}>Search</Button>
+          <Space.Compact style={{ width: "100%" }}>
+            <Input
+              placeholder="Pokemon 1"
+              value={pokemon1}
+              onChange={handleInputChange1}
+            />
+            <Input
+              placeholder="Pokemon 2"
+              value={pokemon2}
+              onChange={handleInputChange2}
+            />
+            {Number(numToCompare) >= 3 && (
+              <Input
+                placeholder="Pokemon 3"
+                value={pokemon3}
+                onChange={handleInputChange3}
+              />
+            )}
+            {Number(numToCompare) >= 4 && (
+              <Input
+                placeholder="Pokemon 4"
+                value={pokemon4}
+                onChange={handleInputChange4}
+              />
+            )}
+            {Number(numToCompare) === 5 && (
+              <Input
+                placeholder="Pokemon 5"
+                value={pokemon5}
+                onChange={handleInputChange5}
+              />
+            )}
+            <Button type="default" onClick={() => searchPokemon()}>
+              Search
+            </Button>
           </Space.Compact>
         </Space>
         <Divider />
       </div>
       <div className="flex">
-      <div className="px-1">
+        <div className="px-1">
           <h1 className="text-lg font-bold">{pokemonA.name}</h1>
           <p className="italic">{formatPokemonNumber(pokemonA.num)} </p>
-          <PokemonCardImage pokemonID={formatPokemonNumber(pokemonA.num)} className="-ml-3" />
+          <PokemonCardImage
+            pokemonID={formatPokemonNumber(pokemonA.num)}
+            className="-ml-3"
+          />
           <h2>HP: {pokemonA.hp}</h2>
           <h2>Attack: {pokemonA.attack}</h2>
           <h2>Defense: {pokemonA.defense}</h2>
           <h2>Special Attack: {pokemonA.specialAttack}</h2>
           <h2>Special Defense: {pokemonA.specialDefense}</h2>
           <h2>Speed: {pokemonA.speed}</h2>
-          <h2><strong>Base Stat Total: {pokemonA.hp + pokemonA.attack + pokemonA.defense + pokemonA.specialAttack + pokemonA.specialDefense + pokemonA.speed}</strong> </h2>
+          <h2>
+            <strong>
+              Base Stat Total:{" "}
+              {pokemonA.hp +
+                pokemonA.attack +
+                pokemonA.defense +
+                pokemonA.specialAttack +
+                pokemonA.specialDefense +
+                pokemonA.speed}
+            </strong>{" "}
+          </h2>
         </div>
         <div className="px-1">
           <h1 className="text-lg font-bold">{pokemonB.name}</h1>
@@ -189,71 +225,109 @@ function ComparePokemon() {
           <h2>Special Attack: {pokemonB.specialAttack}</h2>
           <h2>Special Defense: {pokemonB.specialDefense}</h2>
           <h2>Speed: {pokemonB.speed}</h2>
-          <h2><strong>Base Stat Total: {pokemonB.hp + pokemonB.attack + pokemonB.defense + pokemonB.specialAttack + pokemonB.specialDefense + pokemonB.speed}</strong></h2>
-
+          <h2>
+            <strong>
+              Base Stat Total:{" "}
+              {pokemonB.hp +
+                pokemonB.attack +
+                pokemonB.defense +
+                pokemonB.specialAttack +
+                pokemonB.specialDefense +
+                pokemonB.speed}
+            </strong>
+          </h2>
         </div>
-        {Number(numToCompare) >= 3  &&
-        <div className="px-1">
-        <h1 className="text-lg font-bold">{pokemonC.name}</h1>
-          <p className="italic">{formatPokemonNumber(pokemonC.num)} </p>
-          <PokemonCardImage pokemonID={formatPokemonNumber(pokemonC.num)} />
-          <h2>HP: {pokemonC.hp}</h2>
-          <h2>Attack: {pokemonC.attack}</h2>
-          <h2>Defense: {pokemonC.defense}</h2>
-          <h2>Special Attack: {pokemonC.specialAttack}</h2>
-          <h2>Special Defense: {pokemonC.specialDefense}</h2>
-          <h2>Speed: {pokemonC.speed}</h2>
-          <h2><strong>Base Stat Total: {pokemonC.hp + pokemonC.attack + pokemonC.defense + pokemonC.specialAttack + pokemonC.specialDefense + pokemonC.speed}</strong></h2>
-        </div>
-            }
-        {Number(numToCompare) >= 4  &&
-        <div className="px-1">
-        <h1 className="text-lg font-bold">{pokemonD.name}</h1>
-          <p className="italic">{formatPokemonNumber(pokemonD.num)} </p>
-          <PokemonCardImage pokemonID={formatPokemonNumber(pokemonD.num)} />
-          <h2>HP: {pokemonD.hp}</h2>
-          <h2>Attack: {pokemonD.attack}</h2>
-          <h2>Defense: {pokemonD.defense}</h2>
-          <h2>Special Attack: {pokemonD.specialAttack}</h2>
-          <h2>Special Defense: {pokemonD.specialDefense}</h2>
-          <h2>Speed: {pokemonD.speed}</h2>
-          <h2><strong>Base Stat Total: {pokemonD.hp + pokemonD.attack + pokemonD.defense + pokemonD.specialAttack + pokemonD.specialDefense + pokemonD.speed}</strong></h2>
-        </div>
-            }
-        {Number(numToCompare) === 5  &&
-        <div className="px-1">
-        <h1 className="text-lg font-bold">{pokemonE.name}</h1>
-          <p className="italic">{formatPokemonNumber(pokemonE.num)} </p>
-          <PokemonCardImage pokemonID={formatPokemonNumber(pokemonE.num)} />
-          <h2>HP: {pokemonE.hp}</h2>
-          <h2>Attack: {pokemonE.attack}</h2>
-          <h2>Defense: {pokemonE.defense}</h2>
-          <h2>Special Attack: {pokemonE.specialAttack}</h2>
-          <h2>Special Defense: {pokemonE.specialDefense}</h2>
-          <h2>Speed: {pokemonE.speed}</h2>
-          <h2><strong>Base Stat Total: {pokemonE.hp + pokemonE.attack + pokemonE.defense + pokemonE.specialAttack + pokemonE.specialDefense + pokemonE.speed}</strong></h2>
-        </div>
-            }
+        {Number(numToCompare) >= 3 && (
+          <div className="px-1">
+            <h1 className="text-lg font-bold">{pokemonC.name}</h1>
+            <p className="italic">{formatPokemonNumber(pokemonC.num)} </p>
+            <PokemonCardImage pokemonID={formatPokemonNumber(pokemonC.num)} />
+            <h2>HP: {pokemonC.hp}</h2>
+            <h2>Attack: {pokemonC.attack}</h2>
+            <h2>Defense: {pokemonC.defense}</h2>
+            <h2>Special Attack: {pokemonC.specialAttack}</h2>
+            <h2>Special Defense: {pokemonC.specialDefense}</h2>
+            <h2>Speed: {pokemonC.speed}</h2>
+            <h2>
+              <strong>
+                Base Stat Total:{" "}
+                {pokemonC.hp +
+                  pokemonC.attack +
+                  pokemonC.defense +
+                  pokemonC.specialAttack +
+                  pokemonC.specialDefense +
+                  pokemonC.speed}
+              </strong>
+            </h2>
+          </div>
+        )}
+        {Number(numToCompare) >= 4 && (
+          <div className="px-1">
+            <h1 className="text-lg font-bold">{pokemonD.name}</h1>
+            <p className="italic">{formatPokemonNumber(pokemonD.num)} </p>
+            <PokemonCardImage pokemonID={formatPokemonNumber(pokemonD.num)} />
+            <h2>HP: {pokemonD.hp}</h2>
+            <h2>Attack: {pokemonD.attack}</h2>
+            <h2>Defense: {pokemonD.defense}</h2>
+            <h2>Special Attack: {pokemonD.specialAttack}</h2>
+            <h2>Special Defense: {pokemonD.specialDefense}</h2>
+            <h2>Speed: {pokemonD.speed}</h2>
+            <h2>
+              <strong>
+                Base Stat Total:{" "}
+                {pokemonD.hp +
+                  pokemonD.attack +
+                  pokemonD.defense +
+                  pokemonD.specialAttack +
+                  pokemonD.specialDefense +
+                  pokemonD.speed}
+              </strong>
+            </h2>
+          </div>
+        )}
+        {Number(numToCompare) === 5 && (
+          <div className="px-1">
+            <h1 className="text-lg font-bold">{pokemonE.name}</h1>
+            <p className="italic">{formatPokemonNumber(pokemonE.num)} </p>
+            <PokemonCardImage pokemonID={formatPokemonNumber(pokemonE.num)} />
+            <h2>HP: {pokemonE.hp}</h2>
+            <h2>Attack: {pokemonE.attack}</h2>
+            <h2>Defense: {pokemonE.defense}</h2>
+            <h2>Special Attack: {pokemonE.specialAttack}</h2>
+            <h2>Special Defense: {pokemonE.specialDefense}</h2>
+            <h2>Speed: {pokemonE.speed}</h2>
+            <h2>
+              <strong>
+                Base Stat Total:{" "}
+                {pokemonE.hp +
+                  pokemonE.attack +
+                  pokemonE.defense +
+                  pokemonE.specialAttack +
+                  pokemonE.specialDefense +
+                  pokemonE.speed}
+              </strong>
+            </h2>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 function SelectNumberToCompare({ onSelectChange }) {
-
   return (
     <Select
       defaultValue="2"
       style={{ width: 120 }}
       onChange={onSelectChange}
       options={[
-        {value: '2', label: '2'},
-        {value: '3', label: '3'},
-        {value: '4', label: '4'},
-        {value: '5', label: '5'}
+        { value: "2", label: "2" },
+        { value: "3", label: "3" },
+        { value: "4", label: "4" },
+        { value: "5", label: "5" },
       ]}
-      />  
-      )
+    />
+  );
 }
 
 export default ComparePokemon;

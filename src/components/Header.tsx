@@ -4,7 +4,7 @@ import Link from "next/link";
 import PokeQuizImage from "../../public/Icons/pokequiz.png";
 import tw from "tailwind-styled-components";
 
-const Header = () => {
+export function Header() {
   return (
     <StyledHeader>
       <HeaderImageContainer>
@@ -14,11 +14,9 @@ const Header = () => {
       </HeaderImageContainer>
     </StyledHeader>
   );
-};
+}
 
 const StyledHeader = tw.div`
-  fixed 
-  top-0
   px-0
   text-center
   bg-red-600
@@ -31,5 +29,3 @@ const HeaderImageContainer = tw.div`
     w-[200px]
     h-auto
 `;
-
-export default Header;

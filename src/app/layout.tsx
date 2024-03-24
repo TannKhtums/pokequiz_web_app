@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { inter } from "./ui/fonts";
 import "./globals.css";
 import SideNav from "../components/sidenav";
-import Header from "../components/header";
+import { Header } from "../components/Header";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { Layout } from "antd";
 
 export const metadata: Metadata = {
   title: "PokeQuiz",
@@ -19,11 +21,9 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <Header />
         <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-          <div className="w-full flex-none md:w-64">
-            <SideNav />
-          </div>
+          <SideNav />
           <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
-            {children}
+            <AntdRegistry>{children}</AntdRegistry>
           </div>
         </div>
       </body>
